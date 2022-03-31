@@ -1,0 +1,18 @@
+{
+  "name": "week3-chargemap",
+  "version": "1.0.0",
+  "description": "graphQL implementation to week 2 chargemap",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrik Pölkki",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "apollo-server-express": "^3.6.7",
+    "dotenv": "^16.0.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.9"
+  }
+}
