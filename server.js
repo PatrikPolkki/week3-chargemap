@@ -3,7 +3,7 @@ import {ApolloServer} from 'apollo-server-express';
 import typeDefs from './schemas/index';
 import resolvers from './resolvers/index';
 import express from 'express';
-import db from './db/db';
+import db from './utils/db';
 
 (async () => {
   try {

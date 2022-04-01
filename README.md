@@ -1,1 +1,1 @@
-# Hello GQL
+# Chargemap GraphQL
