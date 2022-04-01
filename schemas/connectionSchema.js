@@ -8,4 +8,12 @@ export default gql`
     LevelTypeID: LevelType
     CurrentTypeID: CurrentType
   }
+  
+  input ConnectionInput {
+    id: ID
+    Quantity: Int
+    ConnectionTypeID: ID
+    LevelTypeID: ID
+    CurrentTypeID: ID
+  }
 `;

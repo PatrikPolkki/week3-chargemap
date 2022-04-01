@@ -4,6 +4,18 @@ export default gql`
   extend type Query {
     stations(start: Int, limit: Int, bounds: Bounds): [Station]
   }
+  
+  extend type Mutation {
+    addStation(
+      Connections: [ConnectionInput]
+      Title: String
+      AddressLine1: String
+      Town: String
+      StateOrProvince: String
+      Postcode: String
+      Location: PointObjectInput
+    ): Station 
+  }
 
   type Station {
     id: ID
@@ -16,6 +28,10 @@ export default gql`
     Location: PointObject
   }
 
+  input PointObjectInput {
+    coordinates: [Float]
+  }
+  
   type PointObject {
     coordinates: [Float]
     type: String
