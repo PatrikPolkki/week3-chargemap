@@ -19,18 +19,40 @@ export default {
   },
   Mutation: {
     addStation: async (parent, args) => {
-      // save the connections first
       const conns = await Promise.all(
           args.Connections.map(async (conn) => {
-            const newConnection = new Connection(args);
+            const newConnection = new Connection(conn);
             const result = await newConnection.save();
             return result._id;
           }),
       );
 
-      const newStation = new Station({...args, Connections: conns});
+      const newStation = new Station(args.stationInfo);
+      newStation.Connections = conns;
       return newStation.save();
     },
+    modifyStation: async (parent, args) => {
+      const conns = await Promise.all(
+          args.Connections.map(async (conn) => {
+            await Connection.findOneAndUpdate({_id: conn.id},
+                {
+                  ConnectionTypeID: conn.ConnectionTypeID,
+                  LevelID: conn.LevelID,
+                  CurrentTypeID: conn.CurrentTypeID,
+                });
+            const newConnection = new Connection(args);
+            const result = await newConnection.save();
+            return result._id;
+          }),
+      );
+      const station = await Station.findOneAndUpdate(args.id, args.stationInfo);
+      station.Connections = conns;
+      return station.save();
+    },
+    deleteStation: async (parent, args) => {
+      return Station.findOneAndDelete(args.id);
+    },
+
   },
 
 };
